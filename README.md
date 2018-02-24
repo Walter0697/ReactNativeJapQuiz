@@ -1,1 +1,20 @@
-# REACT_NATIVE_JAP_QUIZ
+# [APP]Jap_Quiz
+
+#### A mobile application created with react native
+
+### Technology :books:
+- React native
+
+### Background :sunrise_over_mountains:
+- current studying Japanese, therefore wanna make an app for me to memorize vocabularies.
+
+### Progresses :arrow_forward:
+- Set up screens for different questions
+- Set up different question types << 
+- Set up mode for next quiz
+- Set up mode for selected chapter
+- Set up history for the wrong answer
+- Set up verb translation
+- Set up adjective translation
+- Set up user interface
+
