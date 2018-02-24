@@ -12,6 +12,7 @@ import {
   View,
   TextInput,
   Button,
+  AsyncStorage,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import styles from './Stylesheet';
@@ -27,7 +28,10 @@ export default class HomeScreen extends Component<{}> {
   }
 
   componentDidMount() {
-    this.setState({score : commonData.getPoint()});
+    commonData.fetchData()
+      .done(() => {
+        this.setState({score : commonData.getPoint()});
+      });
   }
 
   render() {
@@ -48,6 +52,14 @@ export default class HomeScreen extends Component<{}> {
           onPress={() => {
             commonData.setMode("Quick Practice");
             navigate('Ready', {});
+        }}/>
+
+        <Button
+          title="Increase"
+          style={styles.button}
+          onPress={() => {
+            commonData.changePoint(1);
+            this.setState({score: commonData.getPoint()});
           }}/>
       </View>
     );
