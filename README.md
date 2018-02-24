@@ -7,6 +7,8 @@
 
 ### Background :sunrise_over_mountains:
 - current studying Japanese, therefore wanna make an app for me to memorize vocabularies.
+- This app rely on the server that created here:
+- https://github.com/Walter0697/JapaneseQuizServer
 
 ### Progresses :arrow_forward:
 - Set up screens for different questions
