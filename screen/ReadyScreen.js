@@ -48,16 +48,39 @@ export default class ReadyScreen extends Component<{}> {
 
   _randomURL()
   {
-    if (Math.floor(Math.random() * 2))
+    if (commonData.getMode() == "Quick Practice")
     {
-      this.setState({question_type: "mc"});
-      return url + "/question/vocab/year/0/mc_meaning";
+      var randNum = Math.floor(Math.random() * 8);
+      if (randNum < 4)
+      {
+        this.setState({question_type: "mc"});
+      }
+      else
+      {
+        this.setState({question_type: "shortq"});
+      }
+
+      switch(randNum)
+      {
+        case 0:
+          return url + "/question/vocab/year/0/mc_meaning";
+        case 1:
+          return url + "/question/vocab/year/0/mc_word";
+        case 2:
+          return url + "/question/kanji/year/0/mc_word";
+        case 3:
+          return url + "/question/kanji/year/0/mc_meaning";
+        case 4:
+          return url + "/question/kanji/year/0/spelling";
+        case 5:
+          return url + "/question/vocab/year/0/short_q";
+        case 6:
+          return url + "/question/verb/year/0";
+        case 7:
+          return url + "/question/adjective/year/0";
+      }
     }
-    else
-    {
-      this.setState({question_type: "shortq"});
-      return url + "/question/kanji/year/0/spelling";
-    }
+    return url;
   }
 
   componentDidMount() {
@@ -110,9 +133,9 @@ export default class ReadyScreen extends Component<{}> {
             style={styles.button}
             onPress={() => {
               if (this.state.question_type == "mc")
-                navigate('MCQ', {question : this.state.fetched_data});
+                navigate('MCQ', {question : this.state.fetched_data, url: actualLink});
               else
-                navigate('SHORTQ', {question : this.state.fetched_data});
+                navigate('SHORTQ', {question : this.state.fetched_data, url: actualLink});
             }} />
         </View>
       </View>

@@ -17,6 +17,7 @@ import {
 import { StackNavigator } from 'react-navigation';
 import styles from './Stylesheet';
 
+import QuestionParser from './QuestionParser';
 import CommonDataManage from './CommonDataManage';
 const commonData = CommonDataManage.getInstance();
 
@@ -25,15 +26,17 @@ export default class MCQuestionScreen extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = this.props.navigation;
-    
   }
 
   componentDidMount() {
-    var tempanswer;
+    var info = QuestionParser.parser(this.state.state.params.url, this.state.state.params.question);
     
-    this.setState({question: "What is the spelling of " + this.state.state.params.question.question + "?",
-                  answer: this.state.state.params.question.answer,
-                  userinput: "",});
+    this.setState({question: info.question,
+                   answer: info.answer,
+                   userinput: "",});
+
+    if (info.meaning)
+      this.setState({meaning: "The meaning of the word is " + info.meaning});
   
   }
 
@@ -52,6 +55,9 @@ export default class MCQuestionScreen extends Component<{}> {
         <View style={styles.main_content}>
           <Text style={styles.instruction}>
             {this.state.question} 
+          </Text>
+          <Text style={styles.instruction}>
+            {this.state.meaning}
           </Text>
           <TextInput
           style={styles.input}
