@@ -55,6 +55,14 @@ export default class HomeScreen extends Component<{}> {
         }}/>
 
         <Button
+          title="Custom Practice"
+          style={styles.button}
+          onPress={() => {
+            commonData.setMode("Custom Practice");
+            navigate('Custom', {});
+          }}/>
+
+        <Button
           title="Increase"
           style={styles.button}
           onPress={() => {

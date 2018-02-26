@@ -21,6 +21,7 @@ import ReadyScreen from './ReadyScreen';
 import MCQuestionScreen from './MCQuestionScreen';
 import NextScreen from './NextScreen';
 import ShortQuestionScreen from './ShortQuestionScreen';
+import CustomScreen from './CustomScreen';
 
 const RootNavigator = StackNavigator({
   Home : {
@@ -37,6 +38,12 @@ const RootNavigator = StackNavigator({
   },
   Ready: {
     screen: ReadyScreen,
+    navigationOptions: {
+      headerLeft: null,
+    },
+  },
+  Custom: {
+    screen: CustomScreen,
     navigationOptions: {
       headerLeft: null,
     },

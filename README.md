@@ -12,10 +12,10 @@
 
 ### Progresses :arrow_forward:
 - Set up screens for different questions
-- Set up different question types << 
+- Set up different question types 
 - Set up saving score even log out
 - Set up mode for next quiz (need to set up database + ez, so later)
-- Set up mode for selected chapter
+- Set up mode for selected chapter <<
 - Set up history for the wrong answer
 - Set up saving question
 - Set up verb translation
