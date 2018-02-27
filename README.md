@@ -14,12 +14,13 @@
 - Set up screens for different questions
 - Set up different question types 
 - Set up saving score even log out
-- Set up mode for next quiz (need to set up database + ez, so later)
-- Set up mode for selected chapter <<
-- Set up history for the wrong answer
-- Set up saving question
+- Set up mode for selected chapter 
+- Set up mode for next quiz <<
+- Set up history for the wrong answer 
+- Set up saving question(?)
 - Set up verb translation
 - Set up adjective translation
+- Set up icon for different scores
 - Set up user interface
 
 - In the meantime, set up katakana test

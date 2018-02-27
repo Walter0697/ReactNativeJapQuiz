@@ -46,38 +46,90 @@ export default class ReadyScreen extends Component<{}> {
     })
   }; 
 
+  _shuffleByCY(separatedBy, range)
+  {
+    var randNum = Math.floor(Math.random() * 8);
+    if (randNum < 4)
+    {
+      this.setState({question_type: "mc"});
+    }
+    else
+    {
+      this.setState({question_type: "shortq"});
+    }
+
+    switch(randNum)
+    {
+      case 0:
+        return url + "/question/vocab/"+separatedBy+"/"+range+"/mc_meaning";
+      case 1:
+        return url + "/question/vocab/"+separatedBy+"/"+range+"/mc_word";
+      case 2:
+        return url + "/question/kanji/"+separatedBy+"/"+range+"/mc_word";
+      case 3:
+        return url + "/question/kanji/"+separatedBy+"/"+range+"/mc_meaning";
+      case 4:
+        return url + "/question/kanji/"+separatedBy+"/"+range+"/spelling";
+      case 5:
+        return url + "/question/vocab/"+separatedBy+"/"+range+"/short_q";
+      case 6:
+        return url + "/question/verb/"+separatedBy+"/"+range;
+      case 7:
+        return url + "/question/adjective/"+separatedBy+"/"+range;
+    }
+  }
+
   _randomURL()
   {
     if (commonData.getMode() == "Quick Practice")
     {
-      var randNum = Math.floor(Math.random() * 8);
-      if (randNum < 4)
-      {
-        this.setState({question_type: "mc"});
-      }
-      else
+      return this._shuffleByCY("year", 0);
+    }
+    else if (commonData.getMode() == "Custom Practice")
+    {
+      if (commonData.getQuestionType() == "all")
+        return this._shuffleByCY("year", commonData.getQuestionYear());
+      else if (commonData.getQuestionType() == "verb")
       {
         this.setState({question_type: "shortq"});
+        return url + "/question/verb/year/"+commonData.getQuestionYear();
       }
-
-      switch(randNum)
+      else if (commonData.getQuestionType() == "adjective")
       {
-        case 0:
-          return url + "/question/vocab/year/0/mc_meaning";
-        case 1:
-          return url + "/question/vocab/year/0/mc_word";
-        case 2:
-          return url + "/question/kanji/year/0/mc_word";
-        case 3:
-          return url + "/question/kanji/year/0/mc_meaning";
-        case 4:
-          return url + "/question/kanji/year/0/spelling";
-        case 5:
-          return url + "/question/vocab/year/0/short_q";
-        case 6:
-          return url + "/question/verb/year/0";
-        case 7:
-          return url + "/question/adjective/year/0";
+        this.setState({question_type: "shortq"});
+        return url + "/question/adjective/year/"+commonData.getQuestionYear();
+      }
+      else if (commonData.getQuestionType() == "vocab")
+      {
+        var randNum = Math.floor(Math.random() * 3);
+        switch(randNum)
+        {
+          case 0:
+            this.setState({question_type: "mc"});
+            return url + "/question/vocab/year/"+commonData.getQuestionYear()+"/mc_meaning";
+          case 1:
+            this.setState({question_type: "mc"});
+            return url + "/question/vocab/year/"+commonData.getQuestionYear()+"/mc_word";
+          case 2:
+            this.setState({question_type: "shortq"});
+            return url + "/question/vocab/year/"+commonData.getQuestionYear()+"/short_q";
+        }
+      }
+      else if (commonData.getQuestionType() == "kanji")
+      {
+        var randNum = Math.floor(Math.random() * 3);
+        switch(randNum)
+        {
+          case 0:
+            this.setState({question_type: "mc"});
+            return url + "/question/kanji/year/"+commonData.getQuestionYear()+"/mc_meaning";
+          case 1:
+            this.setState({question_type: "mc"});
+            return url + "/question/kanji/year/"+commonData.getQuestionYear()+"/mc_word";
+          case 2:
+            this.setState({question_type: "shortq"});
+            return url + "/question/kanji/year/"+commonData.getQuestionYear()+"/spelling";
+        }
       }
     }
     return url;

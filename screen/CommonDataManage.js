@@ -8,8 +8,7 @@ export default class CommonDataManage {
   _currentPoint = 0;
   _mode = "";
   _question_type = "";
-  _question = "";
-  _answer = "";
+  _question_year = "";
 
   //saving data inside the phone
   async _saveData()
@@ -27,16 +26,6 @@ export default class CommonDataManage {
   //fetching information from the phone storage
   async fetchData()
   {
-    /*AsyncStorage.getItem("@JapQuiz:list")
-      .then((response) => {
-        return JSON.parse(response);
-      })
-      .then((parsedResponse) => {
-        if (parsedResponse)
-          this._currentPoint = parsedResponse.score;   
-        else
-          this._currentPoint = 0;
-      });*/
     let response = await AsyncStorage.getItem('@JapQuiz:list');
     let listOfData = await JSON.parse(response) || [];
 
@@ -64,6 +53,26 @@ export default class CommonDataManage {
   getMode()
   {
     return this._mode;
+  }
+
+  setQuestionType(type)
+  {
+    this._question_type = type;
+  }
+
+  getQuestionType()
+  {
+    return this._question_type;
+  }
+
+  setQuestionYear(year)
+  {
+    this._question_year = year;
+  }
+
+  getQuestionYear()
+  {
+    return this._question_year;
   }
 
   changePoint(value)

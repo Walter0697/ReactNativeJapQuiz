@@ -13,12 +13,14 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
-  Picker,
 } from 'react-native';
+import SimplePicker from 'react-native-simple-picker';
 import { StackNavigator } from 'react-navigation';
 import styles from './Stylesheet';
 
-var typeItems = ["vocab", "verb", "adjective", "kanji"];
+let index = 0;
+const typeLabels = ['all', 'vocab', 'adjective', 'verb', 'kanji'];
+const yearLabels = ['1', '2'];
 
 import CommonDataManage from './CommonDataManage';
 const commonData = CommonDataManage.getInstance();
@@ -31,17 +33,12 @@ export default class CustomScreen extends Component<{}> {
   }
 
   componentDidMount() { 
-    this.setState({ typeSelected : "vocab" });
-    typeItems = ["vocab", "verb", "adjective", "kanji"];
+    this.setState({ selectedType : '', selectedYear : '',});
   }
 
-  /*
-  {
-              typeItems.map(item => {
-               return (<Item label={item} value={item} key={item} />)})
-            }*/
   render() {
     const { navigate } = this.props.navigation;
+
     return (
       <View style={styles.wholeContainer}>
         <View style={styles.backContainer}>
@@ -53,29 +50,52 @@ export default class CustomScreen extends Component<{}> {
             }}/>
         </View>
         <View style={styles.main_content}>
-          <Text style={styles.instruction}>Type something</Text>
+          <Text style={styles.instruction}
+            onPress={() => {this.refs.typePicker.show(); }}>
+            { (this.state.selectedType == "") ? "click here to choose the type of question you want to practice" : 
+               "Question Type : " + this.state.selectedType}
+          </Text>
+          <SimplePicker
+            ref={'typePicker'}
+            options={typeLabels}
+            labels={typeLabels}
+            itemStyle={{color: 'black',
+                        textAlign: 'center',
+                        fontWeight: 'bold',}}
+            onSubmit={(option) => {
+                      this.setState({selectedType : option});
+                      }} 
+          />
 
-          <Picker
-            style={styles.picker}
-            selectedValue={this.state.typeSelected}
-            onValueChange={(selected) => { this.setState({typeSelected : selected})}}
-          >
-            {typeItems.map(item => {
-              return (<Picker.Item label={item} value={item} key={item}/>)
-            })}
-          </Picker>
+          <Text style={styles.instruction}
+            onPress={() => {this.refs.yearpicker.show(); }}>
+            { (this.state.selectedYear == "") ? "click here to choose the range of the question" :
+              "Year selected : " + this.state.selectedYear}
+          </Text>
+          <SimplePicker
+            ref={'yearpicker'}
+            options={yearLabels}
+            labels={yearLabels}
+            itemStyle={{color: 'black',
+                        textAlign: 'center',
+                        fontWeight: 'bold',}}
+            onSubmit={(option) => {
+                      this.setState({selectedYear: option});
+                      }}
+          />
 
           <TouchableOpacity style={styles.buttonBox} activeOpacity = {.5} 
                             onPress={() => {
-                              if (this.state.answer == this.state.userinput)
+                              if (this.state.selectedType == "" || this.state.selectedYear == "")
                               {
-                                commonData.changePoint(1);
-                                navigate("Ready", {"correct": "You are correct"});
+                                alert("You should select the type and the range");
                               }
                               else
-                                navigate("Ready", {"correct": "This is not correct", 
-                                                  "answer" : this.state.answer,
-                                                  "user_input": this.state.userinput,});
+                              {
+                                commonData.setQuestionType(this.state.selectedType);
+                                commonData.setQuestionYear(this.state.selectedYear);
+                                navigate('Ready', {});
+                              }
                             }}>
               <Text>Confirm</Text>
           </TouchableOpacity>
@@ -84,5 +104,3 @@ export default class CustomScreen extends Component<{}> {
     );
   }
 }
-
-

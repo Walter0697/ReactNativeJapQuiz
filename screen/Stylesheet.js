@@ -51,10 +51,4 @@ export default styles = StyleSheet.create({
   input: {
     height: 40,
   },
-  picker: {
-    width: '80%',
-    height: 40,
-    backgroundColor: '#009688',
-    margin: 10,
-  }
 });
