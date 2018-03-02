@@ -85,6 +85,10 @@ export default class ReadyScreen extends Component<{}> {
     {
       return this._shuffleByCY("year", 0);
     }
+    else if (commonData.getMode() == "Next Quiz")
+    {
+      return this._shuffleByCY("chapter", 3);
+    }
     else if (commonData.getMode() == "Custom Practice")
     {
       if (commonData.getQuestionType() == "all")

@@ -22,6 +22,7 @@ import MCQuestionScreen from './MCQuestionScreen';
 import NextScreen from './NextScreen';
 import ShortQuestionScreen from './ShortQuestionScreen';
 import CustomScreen from './CustomScreen';
+import ConjugationScreen from './ConjugationScreen';
 
 const RootNavigator = StackNavigator({
   Home : {
@@ -44,6 +45,12 @@ const RootNavigator = StackNavigator({
   },
   Custom: {
     screen: CustomScreen,
+    navigationOptions: {
+      headerLeft: null,
+    },
+  },
+  Conjugation: {
+    screen: ConjugationScreen,
     navigationOptions: {
       headerLeft: null,
     },

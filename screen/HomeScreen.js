@@ -63,11 +63,18 @@ export default class HomeScreen extends Component<{}> {
           }}/>
 
         <Button
-          title="Increase"
+          title="Next Quiz Practice"
           style={styles.button}
           onPress={() => {
-            commonData.changePoint(1);
-            this.setState({score: commonData.getPoint()});
+            commonData.setMode("Next Quiz");
+            navigate('Ready', {});
+          }}/>
+
+        <Button
+          title="Converting verb/adjective"
+          style={styles.button}
+          onPress={() => {
+            navigate('Conjugation', {});
           }}/>
       </View>
     );

@@ -13,6 +13,7 @@ export default styles = StyleSheet.create({
   main_content: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#F5FCFF',
     marginBottom: 150,
   },
