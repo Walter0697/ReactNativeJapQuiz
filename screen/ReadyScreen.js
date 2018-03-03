@@ -140,22 +140,26 @@ export default class ReadyScreen extends Component<{}> {
   }
 
   componentDidMount() {
-    this.setState({fetched_data: "", question_type: ""});
+    this.setState({fetched_data: "", question_type: "", buttontext : "Next"});
 
     //set up the display text, whether it is the first question
     //or next question
     
     var temp_display = "";
+    var temp_button = "Next";
     if (!this.state.state.params.correct)
       temp_display += commonData.getMode() + " Mode, Click 'Next' to begin";
     else
       temp_display += this.state.state.params.correct;
+
+    if (this.state.state.params.button)
+      temp_button = this.state.state.pararms.button;
     
     if (this.state.state.params.answer){
       temp_display += "\n correct answer is " + this.state.state.params.answer;
       temp_display += "\n your answer is " + this.state.state.params.user_input;
     }
-    this.setState({display_text: temp_display});
+    this.setState({display_text: temp_display, buttontext: temp_button});
     
     //check the question mode later
     //if (this.state.)

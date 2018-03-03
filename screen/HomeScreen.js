@@ -30,7 +30,7 @@ export default class HomeScreen extends Component<{}> {
   componentDidMount() {
     commonData.fetchData()
       .done(() => {
-        this.setState({score : commonData.getPoint()});
+        this.setState({score : commonData.getPoint(), testing: commonData.getWrongList()});
       });
   }
 
@@ -71,11 +71,23 @@ export default class HomeScreen extends Component<{}> {
           }}/>
 
         <Button
+          title="Previous Wrong Questions"
+          style={styles.button}
+          onPress={()=>{
+            commonData.setMode("Wrong List");
+            //will navigate the screen the select the question type
+          }}/>
+
+        <Button
           title="Converting verb/adjective"
           style={styles.button}
           onPress={() => {
             navigate('Conjugation', {});
           }}/>
+
+          <Text style={styles.instruction}>
+            {JSON.stringify(this.state.testing)}
+          </Text>
       </View>
     );
   }

@@ -29,9 +29,13 @@ export default class MCQuestionScreen extends Component<{}> {
   }
 
   componentDidMount() {
-    var info = QuestionParser.parser(this.state.state.params.url, this.state.state.params.question);
+    let url = this.state.state.params.url;
+    let question = this.state.state.params.question;
+    let info = QuestionParser.parser(url, question);
     
-    this.setState({question: info.question,
+    this.setState({url: url,
+                   fetched_data: question,
+                   question: info.question,
                    answer: info.answer,
                    userinput: "",});
 
@@ -74,9 +78,12 @@ export default class MCQuestionScreen extends Component<{}> {
                                 navigate("Ready", {"correct": "You are correct"});
                               }
                               else
+                              {
+                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, "shortq");
                                 navigate("Ready", {"correct": "This is not correct", 
                                                   "answer" : this.state.answer,
                                                   "user_input": this.state.userinput,});
+                              }
                             }}>
               <Text>Confirm</Text>
           </TouchableOpacity>

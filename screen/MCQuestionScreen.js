@@ -29,9 +29,13 @@ export default class MCQuestionScreen extends Component<{}> {
   }
 
   componentDidMount() {
-    var info = QuestionParser.parser(this.state.state.params.url, this.state.state.params.question);
+    let url = this.state.state.params.url;
+    let question = this.state.state.params.question;
+    let info = QuestionParser.parser(url, question);
 
-    this.setState({question: info.question,
+    this.setState({url : url,
+                  fetched_data: question,
+                  question: info.question,
                   a: info.a, b: info.b, c: info.c, d: info.d,
                   correct_answer: info.correct_answer,
                   answer: info.answer});
@@ -61,7 +65,10 @@ export default class MCQuestionScreen extends Component<{}> {
                                 navigate("Ready", {"correct": "You are correct"});
                               }
                               else
+                              {
+                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, "mc");
                                 navigate("Ready", {"correct": "This is not correct", "answer" : this.state.correct_answer, "user_input": this.state.a});
+                              }
                             }}>
               <Text>{this.state.a}</Text>
           </TouchableOpacity>
@@ -73,7 +80,10 @@ export default class MCQuestionScreen extends Component<{}> {
                                 navigate("Ready", {"correct": "You are correct"});
                               }
                               else
+                              {
+                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, "mc");
                                 navigate("Ready", {"correct": "This is not correct", "answer" : this.state.correct_answer, "user_input": this.state.b});
+                              }
                             }}>
               <Text>{this.state.b}</Text>
           </TouchableOpacity>
@@ -85,7 +95,10 @@ export default class MCQuestionScreen extends Component<{}> {
                                 navigate("Ready", {"correct": "You are correct"});
                               }
                               else
+                              {
+                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, "mc");
                                 navigate("Ready", {"correct": "This is not correct", "answer" : this.state.correct_answer, "user_input": this.state.c});
+                              }
                             }}>
               <Text>{this.state.c}</Text>
           </TouchableOpacity>
@@ -97,7 +110,10 @@ export default class MCQuestionScreen extends Component<{}> {
                                 navigate("Ready", {"correct": "You are correct"});
                               }
                               else
+                              {
+                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, "mc");
                                 navigate("Ready", {"correct": "This is not correct", "answer" : this.state.correct_answer, "user_input": this.state.d});
+                              }
                             }}>
               <Text>{this.state.d}</Text>
           </TouchableOpacity>

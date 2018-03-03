@@ -10,12 +10,15 @@ export default class CommonDataManage {
   _question_type = "";
   _question_year = "";
 
+  _wrong_list = [];
+
   //saving data inside the phone
   async _saveData()
   {
     try{
       await AsyncStorage.setItem("@JapQuiz:list",
-                              JSON.stringify({score: this._currentPoint}));
+                              JSON.stringify({score: this._currentPoint,
+                                              wrong_list: this._wrong_list,}));
     }
     catch(error)
     {
@@ -33,6 +36,11 @@ export default class CommonDataManage {
       this._currentPoint = listOfData.score;
     else
       this._currentPoint = 0;
+
+    if (listOfData.wrong_list)
+      this._wrong_list = listOfData.wrong_list;
+    else
+      this._wrong_list = [];
   }
   
 
@@ -43,6 +51,30 @@ export default class CommonDataManage {
       this.myinstance.fetchData();
     }
     return this.myinstance;
+  }
+
+  //manipulate with the list
+  appendWrongQuestion(url, data, type)
+  {
+    var temp_data = {url : url, data: data, type: type};
+    this._wrong_list.push(temp_data);
+
+    this._saveData();
+  }
+
+  getWrongQuestion(index)
+  {
+    return this._wrong_list[index];
+  }
+
+  getWrongList()
+  {
+    return this._wrong_list;
+  }
+
+  removeWrongQuestion(index)
+  {
+    this._wrong_list.splice(index, 1);
   }
 
   setMode(mode)
