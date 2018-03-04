@@ -39,6 +39,10 @@ export default class MCQuestionScreen extends Component<{}> {
                   a: info.a, b: info.b, c: info.c, d: info.d,
                   correct_answer: info.correct_answer,
                   answer: info.answer});
+
+    //if this is from previuos wrong question
+    if (this.state.state.params.index)
+      this.setState({index: this.state.state.params.index});
   }
 
   render() {
@@ -62,11 +66,13 @@ export default class MCQuestionScreen extends Component<{}> {
                               if (this.state.answer == 0)
                               {
                                 commonData.changePoint(1);
+                                if (this.state.index)
+                                  commonData.removeWrongQuestion(this.state.index);
                                 navigate("Ready", {"correct": "You are correct"});
                               }
                               else
                               {
-                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, "mc");
+                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, this.state.question, "mc");
                                 navigate("Ready", {"correct": "This is not correct", "answer" : this.state.correct_answer, "user_input": this.state.a});
                               }
                             }}>
@@ -77,11 +83,13 @@ export default class MCQuestionScreen extends Component<{}> {
                               if (this.state.answer == 1)
                               {
                                 commonData.changePoint(1);
+                                if (this.state.index)
+                                  commonData.removeWrongQuestion(this.state.index);
                                 navigate("Ready", {"correct": "You are correct"});
                               }
                               else
                               {
-                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, "mc");
+                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, this.state.question, "mc");
                                 navigate("Ready", {"correct": "This is not correct", "answer" : this.state.correct_answer, "user_input": this.state.b});
                               }
                             }}>
@@ -92,11 +100,13 @@ export default class MCQuestionScreen extends Component<{}> {
                               if (this.state.answer == 2)
                               {
                                 commonData.changePoint(1);
+                                if (this.state.index)
+                                  commonData.removeWrongQuestion(this.state.index);
                                 navigate("Ready", {"correct": "You are correct"});
                               }
                               else
                               {
-                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, "mc");
+                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, this.state.question, "mc");
                                 navigate("Ready", {"correct": "This is not correct", "answer" : this.state.correct_answer, "user_input": this.state.c});
                               }
                             }}>
@@ -107,11 +117,13 @@ export default class MCQuestionScreen extends Component<{}> {
                               if (this.state.answer == 3)
                               {
                                 commonData.changePoint(1);
+                                if (this.state.index)
+                                  commonData.removeWrongQuestion(this.state.index);
                                 navigate("Ready", {"correct": "You are correct"});
                               }
                               else
                               {
-                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, "mc");
+                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, this.state.question, "mc");
                                 navigate("Ready", {"correct": "This is not correct", "answer" : this.state.correct_answer, "user_input": this.state.d});
                               }
                             }}>

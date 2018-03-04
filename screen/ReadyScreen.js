@@ -159,15 +159,22 @@ export default class ReadyScreen extends Component<{}> {
       temp_display += "\n correct answer is " + this.state.state.params.answer;
       temp_display += "\n your answer is " + this.state.state.params.user_input;
     }
+
+    if (commonData.getMode() == "Wrong List")
+      temp_display += "\n\n Click 'Next' to go back to the list";
+
     this.setState({display_text: temp_display, buttontext: temp_button});
     
-    //check the question mode later
-    //if (this.state.)
-    actualLink = this._randomURL();
+    //Wrong List mode doesn't require fetching data from API
+    if (commonData.getMode() != "Wrong List")
+    {
+      //check the question mode later 
+      actualLink = this._randomURL();
 
-    //get the question from the database
-    //this will fetch the data into fetched_data
-    this._fetchingInfo();
+      //get the question from the API
+      //this will fetch the data into fetched_data
+      this._fetchingInfo();
+    }
     
   }
 
@@ -192,7 +199,9 @@ export default class ReadyScreen extends Component<{}> {
             title="Next"
             style={styles.button}
             onPress={() => {
-              if (this.state.question_type == "mc")
+              if (commonData.getMode() == "Wrong List")
+                navigate('WrongQ', {});
+              else if (this.state.question_type == "mc")
                 navigate('MCQ', {question : this.state.fetched_data, url: actualLink});
               else
                 navigate('SHORTQ', {question : this.state.fetched_data, url: actualLink});

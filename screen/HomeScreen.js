@@ -75,6 +75,7 @@ export default class HomeScreen extends Component<{}> {
           style={styles.button}
           onPress={()=>{
             commonData.setMode("Wrong List");
+            navigate('WrongQ', {});
             //will navigate the screen the select the question type
           }}/>
 
@@ -84,10 +85,6 @@ export default class HomeScreen extends Component<{}> {
           onPress={() => {
             navigate('Conjugation', {});
           }}/>
-
-          <Text style={styles.instruction}>
-            {JSON.stringify(this.state.testing)}
-          </Text>
       </View>
     );
   }

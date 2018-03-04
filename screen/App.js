@@ -23,6 +23,7 @@ import NextScreen from './NextScreen';
 import ShortQuestionScreen from './ShortQuestionScreen';
 import CustomScreen from './CustomScreen';
 import ConjugationScreen from './ConjugationScreen';
+import WrongAnswerScreen from './WrongAnswerScreen';
 
 const RootNavigator = StackNavigator({
   Home : {
@@ -67,33 +68,12 @@ const RootNavigator = StackNavigator({
       headerLeft: null,
     },
   },
+  WrongQ : {
+    screen : WrongAnswerScreen,
+    navigationOptions: {
+      headerLeft: null,
+    },
+  },
 });
 
 export default RootNavigator;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-    fontSize : 20
-  },
-  input: {
-    marginTop: 20,
-    paddingHorizontal: 15,
-    height: 40,
-    backgroundColor: 'white',
-    textAlign:'center',
-  }
-});

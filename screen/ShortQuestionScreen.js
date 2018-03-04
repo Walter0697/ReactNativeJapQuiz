@@ -39,8 +39,13 @@ export default class MCQuestionScreen extends Component<{}> {
                    answer: info.answer,
                    userinput: "",});
 
+    //if it has meaning provided
     if (info.meaning)
       this.setState({meaning: "The meaning of the word is " + info.meaning});
+
+    //if this is from previuos wrong question
+    if (this.state.state.params.index)
+      this.setState({index: this.state.state.params.index});
   
   }
 
@@ -75,11 +80,13 @@ export default class MCQuestionScreen extends Component<{}> {
                               if (this.state.answer == this.state.userinput)
                               {
                                 commonData.changePoint(1);
+                                if (this.state.index)
+                                  commonData.removeWrongQuestion(this.state.index);
                                 navigate("Ready", {"correct": "You are correct"});
                               }
                               else
                               {
-                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, "shortq");
+                                commonData.appendWrongQuestion(this.state.url, this.state.fetched_data, this.state.question, "shortq");
                                 navigate("Ready", {"correct": "This is not correct", 
                                                   "answer" : this.state.answer,
                                                   "user_input": this.state.userinput,});

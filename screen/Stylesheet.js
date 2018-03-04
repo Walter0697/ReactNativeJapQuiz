@@ -52,4 +52,10 @@ export default styles = StyleSheet.create({
   input: {
     height: 40,
   },
+  flatList: {
+    flex: 10,
+    alignItems: 'flex-start',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
 });

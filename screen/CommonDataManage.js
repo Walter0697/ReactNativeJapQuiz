@@ -54,21 +54,22 @@ export default class CommonDataManage {
   }
 
   //manipulate with the list
-  appendWrongQuestion(url, data, type)
+  appendWrongQuestion(url, data, question, type)
   {
-    var temp_data = {url : url, data: data, type: type};
-    this._wrong_list.push(temp_data);
+    if (this._mode != "Wrong List")
+    {
+      var temp_data = {url : url, data: data, question: question, type: type};
+      this._wrong_list.push(temp_data);
 
-    this._saveData();
-  }
-
-  getWrongQuestion(index)
-  {
-    return this._wrong_list[index];
+      this._saveData();
+    }
   }
 
   getWrongList()
   {
+    for (i in this._wrong_list)
+      this._wrong_list[i]['key'] = i;
+
     return this._wrong_list;
   }
 

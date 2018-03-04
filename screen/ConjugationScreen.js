@@ -134,12 +134,6 @@ export default class ConjugationScreen extends Component<{}> {
         </View>
       </View>
     );
-    /*
-    negative_form : "",
-                    past_tense : "", past_negative : "",
-                    te_form : "", past_short : "",
-                    past_negative_short : "", 
-                     */
   }
 }
 
