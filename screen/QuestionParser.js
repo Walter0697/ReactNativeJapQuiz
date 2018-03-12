@@ -53,6 +53,11 @@ export default class QuestionParser {
       returnObj.answer = data.answer;
       returnObj.meaning = data.meaning;
     }
+    else if (url.indexOf('/katakana') !== -1)
+    {
+      returnObj.question = "What is the meaning of " + data.question;
+      returnObj.answer = data.answer;
+    }
     return returnObj;
     /*
     case 0:

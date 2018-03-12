@@ -28,6 +28,11 @@ export default styles = StyleSheet.create({
     textAlign: 'left',
     justifyContent: 'center',
   },
+  clearButton: {
+    fontSize: 20,
+    textAlign: 'right',
+    justifyContent: 'center',
+  },
   instruction: {
     textAlign: 'center',
     color: '#333333',

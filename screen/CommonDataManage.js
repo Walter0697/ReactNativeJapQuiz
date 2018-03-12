@@ -76,6 +76,13 @@ export default class CommonDataManage {
   removeWrongQuestion(index)
   {
     this._wrong_list.splice(index, 1);
+    this._saveData();
+  }
+
+  clearWrongList()
+  {
+    this._wrong_list = []
+    this._saveData();
   }
 
   setMode(mode)

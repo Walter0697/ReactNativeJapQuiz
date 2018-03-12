@@ -71,7 +71,7 @@ export default class MCQuestionScreen extends Component<{}> {
           <TextInput
           style={styles.input}
           value={this.state.userinput}
-          placeholder="Type your answer in hiragana"
+          placeholder="Type your answer here"
           editable={true}
           onChangeText={(text) => this.setState({userinput:text})}  
           />

@@ -71,9 +71,17 @@ export default class HomeScreen extends Component<{}> {
           }}/>
 
         <Button
+          title="Katakana Practice"
+          style={styles.button}
+          onPress={() => {
+            commonData.setMode("Katakana Practice");
+            navigate('Ready', {});
+          }}/>
+
+        <Button
           title="Previous Wrong Questions"
           style={styles.button}
-          onPress={()=>{
+          onPress={() => {
             commonData.setMode("Wrong List");
             navigate('WrongQ', {});
             //will navigate the screen the select the question type

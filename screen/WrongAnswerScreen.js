@@ -29,7 +29,7 @@ export default class ConjugationScreen extends Component<{}> {
   }
 
   componentDidMount() {
-    //this.setState({ });
+    this.setState({ list: commonData.getWrongList() });
   }
 
   render() {
@@ -43,10 +43,18 @@ export default class ConjugationScreen extends Component<{}> {
             onPress={() => {
               navigate('Home', {});
             }}/>
+          <Button
+            title="Empty Wrong Question"
+            style={styles.clearButton}
+            onPress={() => {
+              commonData.clearWrongList();
+              this.setState({ list: [] });
+            }}
+            />
         </View>
         <View style={styles.flatList}>
           <FlatList
-            data={commonData.getWrongList()}
+            data={this.state.list}
             renderItem={({item}) => 
               <TouchableOpacity style={styles.buttonBox} activeOpacity = {.5}
                 onPress={() => {

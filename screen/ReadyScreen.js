@@ -85,9 +85,14 @@ export default class ReadyScreen extends Component<{}> {
     {
       return this._shuffleByCY("year", 0);
     }
+    else if (commonData.getMode() == "Katakana Practice")
+    {
+      this.setState({question_type: "shortq"});
+      return url + "/question/katakana";
+    }
     else if (commonData.getMode() == "Next Quiz")
     {
-      return this._shuffleByCY("chapter", 3);
+      return this._shuffleByCY("chapter", 14);
     }
     else if (commonData.getMode() == "Custom Practice")
     {
