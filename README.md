@@ -16,12 +16,12 @@
 - Set up saving score even log out
 - Set up mode for selected chapter 
 - Set up mode for next quiz 
-- Set up history for the wrong answer <<
+- Set up history for the wrong answer 
 - Set up saving question(?) xx
 - Set up verb translation 
 - Set up adjective translation
-- Set up icon for different scores　
-- Set up user interface
+- Set up icon for different scores (later)
+- Set up user interface <<
 
-- In the meantime, set up katakana test
+- In the meantime, set up all the databases
 

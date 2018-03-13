@@ -12,10 +12,12 @@ import {
   View,
   TextInput,
   Button,
+  Image,
   TouchableOpacity,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import styles from './Stylesheet';
+import images from './AssetsManager';
 
 import QuestionParser from './QuestionParser';
 import CommonDataManage from './CommonDataManage';
@@ -51,8 +53,21 @@ export default class MCQuestionScreen extends Component<{}> {
 
   render() {
     const { navigate } = this.props.navigation;
+    const resizeMode = 'cover';
     return (
       <View style={styles.wholeContainer}>
+      
+        <View
+          style={styles.backgroundView}>
+          <Image
+            style={{
+              flex: 1,
+              resizeMode,
+            }}
+            source={ images.backgroundImage }
+          />
+        </View>
+
         <View style={styles.backContainer}>
           <Button 
             title="Back"

@@ -11,12 +11,14 @@ import {
   Text,
   View,
   TextInput,
+  Image,
   Button,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import CommonDataManage from './CommonDataManage';
 import styles from './Stylesheet';
+import images from './AssetsManager';
 
 var url = "http://45.77.110.134:9000";
 var actualLink = url + "/question/verb/year/0";
@@ -61,8 +63,21 @@ export default class NextScreen extends Component<{}> {
 
   render() {
     const { navigate } = this.props.navigation;
+    const resizeMode = 'cover';
     return (
       <View style={styles.wholeContainer}>
+
+        <View
+          style={styles.backgroundView}>
+          <Image
+            style={{
+              flex: 1,
+              resizeMode,
+            }}
+            source={ images.backgroundImage }
+          />
+        </View>
+
         <View style={styles.backContainer}>
           <Button 
             title="Back"

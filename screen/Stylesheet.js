@@ -63,4 +63,11 @@ export default styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
+  backgroundView: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  },
 });

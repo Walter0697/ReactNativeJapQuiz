@@ -16,7 +16,6 @@ import {
   StackNavigator,
 } from 'react-navigation';
 import HomeScreen from './HomeScreen';
-import SecondScreen from './SecondScreen';
 import ReadyScreen from './ReadyScreen';
 import MCQuestionScreen from './MCQuestionScreen';
 import NextScreen from './NextScreen';
@@ -31,12 +30,6 @@ const RootNavigator = StackNavigator({
     navigationOptions: {
       headerLeft: null,
     }
-  },
-  Second: {
-    screen: SecondScreen,
-    navigationOptions: {
-      headerLeft: null,
-    },
   },
   Ready: {
     screen: ReadyScreen,
